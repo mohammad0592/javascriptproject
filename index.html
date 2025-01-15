@@ -15,27 +15,27 @@
      <div class="TodoInput">
         <div style="display: flex;">
           <i   class="fa-solid fa-book" id="icon"></i>
-          <input type="text" placeholder="New Todo" class="input" >
+          <input id="input-new-task" type="text" placeholder="New Todo" class="input" >
         </div>
-       <button class="button-add-new-task" >Add new task</button>
+       <button class="button-add-new-task" id="button-add-new-task">Add new task</button>
         </div>
         <div style="justify-content: space-between;">
          <h1>TodoList</h1>
-         <button class="filter-buttons"> All</button>
-         <button class="filter-buttons">Done</button>
-         <button class="filter-buttons">Todo</button>
+         <button class="filter-buttons" id="filter-button-all"> All</button>
+         <button class="filter-buttons" id="filter-button-done">Done</button>
+         <button class="filter-buttons" id="filter-button-todo">Todo</button>
 
         </div>
         <div></div>
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <div>
-          <button class="button-delete-done-tasks">Delete Done Tasks</button>
-          <button class="button-delete-all-tasks">Delete All Tasks</button>
+          <button class="button-delete-done-tasks" id="button-delete-done-tasks">Delete Done Tasks</button>
+          <button class="button-delete-all-tasks" id="button-delete-all-tasks">Delete All Tasks</button>
         </div>
 
 </main>
 
 
-  
+   <script src="javascript.js"></script>
 </body>
 </html>
