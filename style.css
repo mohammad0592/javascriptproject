@@ -9,7 +9,7 @@ body{
   /* border: 1px solid rgb(110, 110, 110); */
 }
 .TodoInput{
-border: 1px solid rgb(110, 110, 110);
+border: 1px solid gray;
 border-radius: 4px;
 max-width: 78.5%;
 margin-left: 10%;
@@ -33,15 +33,17 @@ padding: 0.9rem;
   cursor: pointer;
 }
 .input{
-  
   display: block;
   width: 98%;
   height: 4vh;
   margin: 0.5rem;
   margin-left: 0rem;
-  
-  
-  
+  border-radius: 0px 5px 5px 0px ;
+  border: 1px solid gray ;
+}
+.input:focus{
+  outline-color:#16a3b7;
+  outline-width: 1px;
 }
 .button-add-new-task{
 width: 98.7%;
