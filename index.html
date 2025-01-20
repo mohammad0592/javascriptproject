@@ -16,7 +16,9 @@
         <div style="display: flex;">
           <i   class="fa-solid fa-book" id="icon"></i>
           <input id="input-new-task" type="text" placeholder="New Todo" class="input" >
+          
         </div>
+        <p id="showmessage"></p>
        <button class="button-add-new-task" id="button-add-new-task">Add new task</button>
         </div>
         <div style="justify-content: space-between;">
@@ -26,11 +28,33 @@
          <button class="filter-buttons" id="filter-button-todo">Todo</button>
 
         </div>
-        <div></div>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <div><ul id="list"></ul> </div>
+        
         <div>
           <button class="button-delete-done-tasks" id="button-delete-done-tasks">Delete Done Tasks</button>
           <button class="button-delete-all-tasks" id="button-delete-all-tasks">Delete All Tasks</button>
+        </div>
+        <div id="edit-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+              <h2>Edit Task</h2>
+              <input type="text" id="edit-task-input" />
+              <p id="inputValpopup"></p>
+              <div class="modal-actions">
+                <button id="save-edit-btn">Save</button>
+                <button id="cancel-edit-btn">Cancel</button>
+              </div>
+            </div>
+        </div>
+        
+        <div id="delete-modal" class="modal" style="display: none;">
+          <div class="modal-content">
+            <h2>Delete Task</h2>
+            <p>Are you sure you want to delete this task?</p>
+            <div class="modal-actions">
+              <button id="confirm-btn" class="confirm-btn">Confirm</button>
+              <button id="cancel-delete-btn" class="cancel-btn">Cancel</button>
+            </div>
+          </div>
         </div>
 
 </main>
