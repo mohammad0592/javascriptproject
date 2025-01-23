@@ -19,9 +19,15 @@ function addtask(){
    const taskname = inputNew.value.trim();
   if (taskname === "") {
     return showmessage("Task cannot be empty.", "red");
+    const wrongsound= new Audio("sounds/wrong.m4a");
+     wrongsound.play();
   } else if (/^\d/.test(taskname)) {
+    const wrongsound= new Audio("sounds/wrong.m4a");
+    wrongsound.play();
     return showmessage("Task cannot start with a number.", "red");
   } else if (taskname.length < 5) {
+    const wrongsound= new Audio("sounds/wrong.m4a");
+    wrongsound.play();
     return showmessage("Task must be at least 5 characters long.", "red");
   } 
   const addsound= new Audio("sounds/add.m4a");
@@ -98,10 +104,16 @@ function editTask(task) {
   newSaveEdit.addEventListener("click", function () {
     const newname = editinput.value.trim();
     if (newname === "") {
+      const wrongsound= new Audio("sounds/wrong.m4a");
+      wrongsound.play();
       return showmessagepopup("Task cannot be empty.", "red");
     } else if (/^\d/.test(newname)) {
+      const wrongsound= new Audio("sounds/wrong.m4a");
+      wrongsound.play();
       return showmessagepopup("Task cannot start with a number.", "red");
     } else if (newname.length < 5) {
+      const wrongsound= new Audio("sounds/wrong.m4a");
+      wrongsound.play();
       return showmessagepopup("Task must be at least 5 characters long.", "red");
     }
      const savesound= new Audio("sounds/Savesound.m4a");
