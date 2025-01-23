@@ -11,8 +11,7 @@ const filtertodo=document.getElementById("filter-button-todo");
 let arrayoftasks = JSON.parse(localStorage.getItem('tasks')) || [];
 var count = 0;
 
-
-
+//button for adding the task .
 addNewTask.addEventListener("click", function () {
   const taskname = inputNew.value.trim();
   if (taskname === "") {
@@ -25,11 +24,12 @@ addNewTask.addEventListener("click", function () {
   const task = { name: taskname, completed: false, id:count++}; 
   arrayoftasks.push(task);
   localStorage.setItem("tasks", JSON.stringify(arrayoftasks)); 
+  list.innerHTML="";
   createTaskElement(task); 
   inputNew.value = ""; 
 });
 
-
+// create the task elements .
 function createTaskElement(task) {
   const li = document.createElement("li");
   li.id = "li" + task.id;
@@ -71,7 +71,7 @@ function createTaskElement(task) {
   li.appendChild(div);
   list.appendChild(li);
 }
-
+//edit task .
 function editTask(task) {
   const editmodal = document.getElementById("edit-modal");
   const editinput = document.getElementById("edit-task-input");
@@ -103,7 +103,7 @@ function editTask(task) {
   });
 }
 
-
+//delete the sepicified task
 function deleteTask(task) {
   const deletemodal = document.getElementById("delete-modal");
   const confirmdelete = document.getElementById("confirm-btn");
@@ -116,6 +116,9 @@ function deleteTask(task) {
     document.getElementById("li" + task.id).remove();
     arrayoftasks = arrayoftasks.filter((t) => t.id !== task.id);
     updateLocalStorage(); 
+    if(arrayoftasks.length===0){
+      list.innerHTML="<h1>.no tasks</h1>";
+    }
     deletemodal.classList.add("hidden");
   });
 
@@ -123,22 +126,23 @@ function deleteTask(task) {
     deletemodal.classList.add("hidden");
   });
 }
-
+//filter all tasks.
 filterall.addEventListener("click", function () {
   setActiveFilter(filterall);
   applyFilter("all");
 });
-
+//filter done tasks.
 filterdone.addEventListener("click", function () {
   setActiveFilter(filterdone);
   applyFilter("done");
 });
-
+//filter to do tasks.
 filtertodo.addEventListener("click", function () {
   setActiveFilter(filtertodo);
   applyFilter("todo");
 });
 
+//apply filter to change the display style for each task li .
 function applyFilter(filterType) {
   arrayoftasks.forEach(task => {
     let taskElement = document.getElementById("li" + task.id);
@@ -154,7 +158,7 @@ function applyFilter(filterType) {
   });
 }
 
-
+//apply current filter 
 function applyCurrentFilter() {
   if (filterall.classList.contains("active")) {
     applyFilter("all");
@@ -165,7 +169,7 @@ function applyCurrentFilter() {
   }
 }
 
-
+// set active filter .
 function setActiveFilter(activeButton) {
   [filterall, filterdone, filtertodo].forEach(button => {
     button.classList.remove("active");
@@ -173,6 +177,63 @@ function setActiveFilter(activeButton) {
   activeButton.classList.add("active");
 }
 
+
+//delete all tasks .
+deletealltasks.addEventListener("click",function(){
+  const deletemodal = document.getElementById("delete-all-modal");
+  const confirmdelete = document.getElementById("confirm-delete-all-btn");
+  const canceldelete = document.getElementById("cancel-delete-all-btn");
+  deletemodal.classList.remove("hidden");
+  confirmdelete.replaceWith(confirmdelete.cloneNode(true));
+
+  const newConfirmDelete = document.getElementById("confirm-delete-all-btn");
+  newConfirmDelete.addEventListener("click", function () {
+    arrayoftasks.forEach(task=>{
+    document.getElementById("li" + task.id).remove();
+    arrayoftasks = arrayoftasks.filter((t) => t.id !== task.id);
+    updateLocalStorage(); 
+    
+    });
+      list.innerHTML="<h1>.no tasks</h1>";
+      deletemodal.classList.add("hidden");
+  });
+
+  canceldelete.addEventListener("click", () => {
+    deletemodal.classList.add("hidden");
+  });
+})
+
+//delete done tasks .
+deletedonetasks.addEventListener("click",function(){
+  const deletemodal = document.getElementById("delete-done-modal");
+  const confirmdelete = document.getElementById("confirm-delete-done-btn");
+  const canceldelete = document.getElementById("cancel-delete-done-btn");
+  deletemodal.classList.remove("hidden");
+  confirmdelete.replaceWith(confirmdelete.cloneNode(true));
+  const newConfirmDelete = document.getElementById("confirm-delete-done-btn");
+  newConfirmDelete.addEventListener("click", function () {
+    var flag=true;
+    arrayoftasks.forEach(task=>{
+      if(task.completed){
+     document.getElementById("li" + task.id).remove();
+     arrayoftasks = arrayoftasks.filter((t) => t.id !== task.id);
+     updateLocalStorage();
+     }
+     else{
+      flag=false;
+     }
+    });
+    
+       if(flag){
+       list.innerHTML="<h1>.no tasks</h1>";
+      }
+     deletemodal.classList.add("hidden");
+  });
+
+  canceldelete.addEventListener("click", () => {
+    deletemodal.classList.add("hidden");
+  });
+})
 
 
 function updateLocalStorage() {
@@ -185,7 +246,6 @@ function tasks(name,completed,id){
   this.completed=completed;
   this.id=id;
 }
-
 
 
 function showmessage(text,color){
@@ -202,11 +262,17 @@ setTimeout(function (){ validationpopup.textContent = ""; }, 1500);
 }
 
 function loadTasks() {
+  var flag=true;
   list.innerHTML = ""; 
   arrayoftasks = JSON.parse(localStorage.getItem("tasks")) || [];
   arrayoftasks.forEach((task) => {
     createTaskElement(task);
+    flag=false;
   });
+  
+  if(flag){
+       list.innerHTML="<h1>.no tasks</h1>";
+    }
 }
 
 loadTasks();
