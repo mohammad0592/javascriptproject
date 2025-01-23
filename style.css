@@ -259,6 +259,7 @@ color: white;
   }
   
 } 
+
 .iconpencil{
   background: none;
   color: rgb(245, 210, 11);
@@ -277,4 +278,8 @@ color: white;
   cursor: pointer;
   color: rgb(182, 29, 29);
   
+}
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
 }

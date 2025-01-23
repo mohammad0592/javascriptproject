@@ -25,6 +25,10 @@ addNewTask.addEventListener("click", function () {
   arrayoftasks.push(task);
   localStorage.setItem("tasks", JSON.stringify(arrayoftasks)); 
   list.innerHTML="";
+  deletealltasks.disabled=false;
+  deletealltasks.classList.remove("disabled");
+  deletedonetasks.disabled=false;
+  deletedonetasks.classList.remove("disabled");
   createTaskElement(task); 
   inputNew.value = ""; 
 });
@@ -118,6 +122,10 @@ function deleteTask(task) {
     updateLocalStorage(); 
     if(arrayoftasks.length===0){
       list.innerHTML="<h1>.no tasks</h1>";
+      deletealltasks.disabled=true;
+       deletealltasks.classList.add("disabled");
+       deletedonetasks.disabled=true;
+       deletedonetasks.classList.add("disabled");
     }
     deletemodal.classList.add("hidden");
   });
@@ -194,8 +202,12 @@ deletealltasks.addEventListener("click",function(){
     updateLocalStorage(); 
     
     });
-      list.innerHTML="<h1>.no tasks</h1>";
-      deletemodal.classList.add("hidden");
+       list.innerHTML="<h1>.no tasks</h1>";
+       deletealltasks.disabled=true;
+       deletealltasks.classList.add("disabled");
+       deletedonetasks.disabled=true;
+       deletedonetasks.classList.add("disabled");
+       deletemodal.classList.add("hidden");
   });
 
   canceldelete.addEventListener("click", () => {
@@ -226,7 +238,13 @@ deletedonetasks.addEventListener("click",function(){
     
        if(flag){
        list.innerHTML="<h1>.no tasks</h1>";
+       deletealltasks.disabled=true;
+       deletealltasks.classList.add("disabled");
+       deletedonetasks.disabled=true;
+       deletedonetasks.classList.add("disabled");
       }
+       deletedonetasks.disabled=true;
+       deletedonetasks.classList.add("disabled");
      deletemodal.classList.add("hidden");
   });
 
@@ -272,6 +290,10 @@ function loadTasks() {
   
   if(flag){
        list.innerHTML="<h1>.no tasks</h1>";
+       deletealltasks.disabled=true;
+       deletealltasks.classList.add("disabled");
+       deletedonetasks.disabled=true;
+       deletedonetasks.classList.add("disabled");
     }
 }
 
