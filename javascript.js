@@ -11,9 +11,12 @@ const filtertodo=document.getElementById("filter-button-todo");
 let arrayoftasks = JSON.parse(localStorage.getItem('tasks')) || [];
 var count = 0;
 
+
 //button for adding the task .
 addNewTask.addEventListener("click", () => addtask());
 function addtask(){
+  const addsound= new Audio("add.m4a");
+  addsound.play();
    const taskname = inputNew.value.trim();
   if (taskname === "") {
     return showmessage("Task cannot be empty.", "red");
@@ -30,8 +33,6 @@ function addtask(){
   }
   deletealltasks.disabled=false;
   deletealltasks.classList.remove("disabled");
-  deletedonetasks.disabled=false;
-  deletedonetasks.classList.remove("disabled");
   createTaskElement(task); 
   inputNew.value = ""; 
 }
@@ -56,6 +57,8 @@ function createTaskElement(task) {
   checkbox.checked = task.completed;
   div.appendChild(checkbox);
   checkbox.addEventListener("change", function () {
+    const donesound= new Audio("done.m4a");
+    donesound.play();
     task.completed = !task.completed;
     paragraph.classList.toggle("completedtask");
     updateLocalStorage();
@@ -122,6 +125,8 @@ function deleteTask(task) {
 
   const newConfirmDelete = document.getElementById("confirm-btn");
   newConfirmDelete.addEventListener("click", function () {
+    const deleteshortsound = new Audio("shortdelete.m4a");
+    deleteshortsound.play();
     document.getElementById("li" + task.id).remove();
     arrayoftasks = arrayoftasks.filter((t) => t.id !== task.id);
     updateLocalStorage(); 
@@ -201,6 +206,8 @@ deletealltasks.addEventListener("click",function(){
 
   const newConfirmDelete = document.getElementById("confirm-delete-all-btn");
   newConfirmDelete.addEventListener("click", function () {
+    const deleteallsound= new Audio("longdelete.m4a");
+    deleteallsound.play();
     arrayoftasks.forEach(task=>{
     document.getElementById("li" + task.id).remove();
     arrayoftasks = arrayoftasks.filter((t) => t.id !== task.id);
@@ -229,6 +236,8 @@ deletedonetasks.addEventListener("click",function(){
   confirmdelete.replaceWith(confirmdelete.cloneNode(true));
   const newConfirmDelete = document.getElementById("confirm-delete-done-btn");
   newConfirmDelete.addEventListener("click", function () {
+    const deleteallsound= new Audio("longdelete.m4a");
+    deleteallsound.play();
     var flag=true;
     arrayoftasks.forEach(task=>{
       if(task.completed){
