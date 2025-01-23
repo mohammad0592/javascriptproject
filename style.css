@@ -230,20 +230,22 @@ color: white;
   color: red;
 }
 
-.containerdiv{
+.containerdiv{ 
   max-width: 83%;
   margin-left:  8.9rem;
   margin-top: 0.4rem; 
-  margin-bottom: 0.4rem; 
-
- li{
+  margin-bottom: 0.4rem;
+  max-height: 300px; 
+  overflow-y: auto; 
+  overflow-y: scroll; 
+  li{
     border: 1px solid black ;
     margin-top: 0.6rem; 
     margin-bottom: 0.6rem; 
     list-style: none;
     display: flex;
     justify-content: space-between;
-
+    
     div{
          display: flex;
          /* border: 1px solid black ; */
@@ -256,10 +258,23 @@ color: white;
       margin: 0.7rem;
   
      }
-    
-  }
   
-} 
+  } 
+  }
+
+  
+.containerdiv::-webkit-scrollbar {
+  width: 3px;
+}
+
+.containerdiv::-webkit-scrollbar-thumb {
+  background-color: #16a3b7;
+  border-radius: 4px;
+}
+
+.containerdiv::-webkit-scrollbar-thumb:hover {
+  background-color:#16a3b7;
+}
 
 .iconpencil{
   background: none;
