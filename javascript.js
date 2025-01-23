@@ -15,8 +15,7 @@ var count = 0;
 //button for adding the task .
 addNewTask.addEventListener("click", () => addtask());
 function addtask(){
-  const addsound= new Audio("sounds/add.m4a");
-  addsound.play();
+ 
    const taskname = inputNew.value.trim();
   if (taskname === "") {
     return showmessage("Task cannot be empty.", "red");
@@ -24,7 +23,9 @@ function addtask(){
     return showmessage("Task cannot start with a number.", "red");
   } else if (taskname.length < 5) {
     return showmessage("Task must be at least 5 characters long.", "red");
-  }
+  } 
+  const addsound= new Audio("sounds/add.m4a");
+  addsound.play();
   const task = { name: taskname, completed: false, id:count++}; 
   arrayoftasks.push(task);
   localStorage.setItem("tasks", JSON.stringify(arrayoftasks)); 
@@ -95,8 +96,6 @@ function editTask(task) {
   saveedit.replaceWith(saveedit.cloneNode(true));
   const newSaveEdit = document.getElementById("save-edit-btn");
   newSaveEdit.addEventListener("click", function () {
-    const savesound= new Audio("sounds/Savesound.m4a");
-    savesound.play();
     const newname = editinput.value.trim();
     if (newname === "") {
       return showmessagepopup("Task cannot be empty.", "red");
@@ -105,6 +104,8 @@ function editTask(task) {
     } else if (newname.length < 5) {
       return showmessagepopup("Task must be at least 5 characters long.", "red");
     }
+     const savesound= new Audio("sounds/Savesound.m4a");
+    savesound.play();
 
     task.name = newname;
     document.getElementById("paragraph" + task.id).innerHTML = newname;
@@ -127,7 +128,7 @@ function deleteTask(task) {
 
   const newConfirmDelete = document.getElementById("confirm-btn");
   newConfirmDelete.addEventListener("click", function () {
-    const deleteshortsound = new Audio("shortdelete.m4a");
+    const deleteshortsound = new Audio("sounds/shortdelete.m4a");
     deleteshortsound.play();
     document.getElementById("li" + task.id).remove();
     arrayoftasks = arrayoftasks.filter((t) => t.id !== task.id);
