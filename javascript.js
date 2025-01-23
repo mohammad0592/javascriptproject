@@ -12,8 +12,9 @@ let arrayoftasks = JSON.parse(localStorage.getItem('tasks')) || [];
 var count = 0;
 
 //button for adding the task .
-addNewTask.addEventListener("click", function () {
-  const taskname = inputNew.value.trim();
+addNewTask.addEventListener("click", () => addtask());
+function addtask(){
+   const taskname = inputNew.value.trim();
   if (taskname === "") {
     return showmessage("Task cannot be empty.", "red");
   } else if (/^\d/.test(taskname)) {
@@ -24,14 +25,16 @@ addNewTask.addEventListener("click", function () {
   const task = { name: taskname, completed: false, id:count++}; 
   arrayoftasks.push(task);
   localStorage.setItem("tasks", JSON.stringify(arrayoftasks)); 
-  list.innerHTML="";
+  if(arrayoftasks.length===1){
+     list.innerHTML="";
+  }
   deletealltasks.disabled=false;
   deletealltasks.classList.remove("disabled");
   deletedonetasks.disabled=false;
   deletedonetasks.classList.remove("disabled");
   createTaskElement(task); 
   inputNew.value = ""; 
-});
+}
 
 // create the task elements .
 function createTaskElement(task) {
@@ -57,6 +60,8 @@ function createTaskElement(task) {
     paragraph.classList.toggle("completedtask");
     updateLocalStorage();
     applyCurrentFilter();
+    deletedonetasks.disabled=false;
+       deletedonetasks.classList.remove("disabled");
   });
 
   const edit = document.createElement("button");
@@ -300,6 +305,11 @@ function loadTasks() {
 loadTasks();
 
 
-
+inputNew.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    addtask();
+  }
+  
+});
 
 
