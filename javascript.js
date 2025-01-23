@@ -109,7 +109,6 @@ function deleteTask(task) {
   const confirmdelete = document.getElementById("confirm-btn");
   const canceldelete = document.getElementById("cancel-delete-btn");
   deletemodal.classList.remove("hidden");
-
   confirmdelete.replaceWith(confirmdelete.cloneNode(true));
 
   const newConfirmDelete = document.getElementById("confirm-btn");
