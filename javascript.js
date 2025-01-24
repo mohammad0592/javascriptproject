@@ -18,9 +18,9 @@ function addtask(){
  
    const taskname = inputNew.value.trim();
   if (taskname === "") {
-    return showmessage("Task cannot be empty.", "red");
     const wrongsound= new Audio("sounds/wrong.m4a");
      wrongsound.play();
+     return showmessage("Task cannot be empty.", "red");
   } else if (/^\d/.test(taskname)) {
     const wrongsound= new Audio("sounds/wrong.m4a");
     wrongsound.play();
