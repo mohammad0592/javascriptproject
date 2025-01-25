@@ -64,9 +64,11 @@ function createTaskElement(task) {
   checkbox.checked = task.completed;
   div.appendChild(checkbox);
   checkbox.addEventListener("change", function () {
-    const donesound= new Audio("sounds/done.m4a");
-    donesound.play();
     task.completed = !task.completed;
+    if(task.completed){
+      const donesound= new Audio("sounds/done.m4a");
+    donesound.play();
+    }
     paragraph.classList.toggle("completedtask");
     updateLocalStorage();
     applyCurrentFilter();
@@ -117,7 +119,7 @@ function editTask(task) {
       return showmessagepopup("Task must be at least 5 characters long.", "red");
     }
      const savesound= new Audio("sounds/Savesound.m4a");
-    savesound.play();
+     savesound.play();
 
     task.name = newname;
     document.getElementById("paragraph" + task.id).innerHTML = newname;
